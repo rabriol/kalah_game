@@ -17,8 +17,16 @@ public class Houses {
         }
     }
 
-    public int getStones(int index) {
+    public int get(int index) {
         return houses[index];
+    }
+
+    public void clear(int index) {
+        houses[index] = 0;
+    }
+
+    public int size() {
+        return NUMBER_OF_HOUSES;
     }
 
     public boolean isEmpty(int index) {

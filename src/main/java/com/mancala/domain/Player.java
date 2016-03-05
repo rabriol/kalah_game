@@ -5,12 +5,13 @@ package com.mancala.domain;
  */
 public class Player {
 
-    public static final int NUMBER_OF_HOUSES = 6;
     public static final int NUMBER_OF_STONES_PER_HOUSE = 6;
 
-    private Houses houses = new Houses(NUMBER_OF_HOUSES, NUMBER_OF_STONES_PER_HOUSE);
-    private int mancala = 0;
+    private Houses houses = new Houses(NUMBER_OF_STONES_PER_HOUSE);
+    private Mancala mancala = new Mancala();
     private int houseIndex = -1;
+    private boolean turn = false;
+    private boolean win = false;
 
     public Houses getHouses() {
         return houses;
@@ -20,11 +21,11 @@ public class Player {
         this.houses = houses;
     }
 
-    public int getMancala() {
+    public Mancala getMancala() {
         return mancala;
     }
 
-    public void setMancala(int mancala) {
+    public void setMancala(Mancala mancala) {
         this.mancala = mancala;
     }
 
@@ -34,5 +35,21 @@ public class Player {
 
     public void setHouseIndex(int houseIndex) {
         this.houseIndex = houseIndex;
+    }
+
+    public boolean isTurn() {
+        return turn;
+    }
+
+    public void setTurn(boolean turn) {
+        this.turn = turn;
+    }
+
+    public boolean isWin() {
+        return win;
+    }
+
+    public void setWin(boolean win) {
+        this.win = win;
     }
 }
