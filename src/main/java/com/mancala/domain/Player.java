@@ -4,52 +4,63 @@ package com.mancala.domain;
  * Created by peo_rboliveira on 04/03/16.
  */
 public class Player {
+    private final Cups cups;
+    private final Mancala mancala;
+    private final PlayerId playerId;
 
-    public static final int NUMBER_OF_STONES_PER_HOUSE = 6;
+    private Boolean turn = Boolean.FALSE;
+    private Boolean winner = Boolean.FALSE;
 
-    private Houses houses = new Houses(NUMBER_OF_STONES_PER_HOUSE);
-    private Mancala mancala = new Mancala();
-    private int houseIndex = -1;
-    private boolean turn = false;
-    private boolean win = false;
-
-    public Houses getHouses() {
-        return houses;
+    public Player(Cups cups, Mancala mancala, PlayerId playerId) {
+        this.cups = cups;
+        this.mancala = mancala;
+        this.playerId = playerId;
     }
 
-    public void setHouses(Houses houses) {
-        this.houses = houses;
+    public Cups getCups() {
+        return cups;
     }
 
     public Mancala getMancala() {
         return mancala;
     }
 
-    public void setMancala(Mancala mancala) {
-        this.mancala = mancala;
+    public PlayerId getPlayerId() {
+        return playerId;
     }
 
-    public int getHouseIndex() {
-        return houseIndex;
+    public Boolean hasWin() {
+        return winner;
     }
 
-    public void setHouseIndex(int houseIndex) {
-        this.houseIndex = houseIndex;
+    public void makeLooser() {
+        winner = Boolean.FALSE;
     }
 
-    public boolean isTurn() {
+    public void makeWinner() {
+        winner = Boolean.TRUE;
+    }
+
+    public void makePlay() {
+        turn = Boolean.TRUE;
+    }
+
+    public void makeWait() {
+        turn = Boolean.FALSE;
+    }
+
+    public Boolean canPlay() {
         return turn;
     }
 
-    public void setTurn(boolean turn) {
-        this.turn = turn;
-    }
-
-    public boolean isWin() {
-        return win;
-    }
-
-    public void setWin(boolean win) {
-        this.win = win;
+    @Override
+    public String toString() {
+        return "Player{" +
+                "cups=" + cups +
+                ", mancala=" + mancala +
+                ", playerId=" + playerId +
+                ", turn=" + turn +
+                ", winner=" + winner +
+                '}';
     }
 }

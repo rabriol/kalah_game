@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Mancala Game</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <div th:if="${player} == 'p1'">
+        <p th:text="'Player 2 (p2): Cups=[' + ${cup20} + ', '+ ${cup21} + ', ' + ${cup22} + ', ' + ${cup23} + ', ' + ${cup24} + ', ' + ${cup25} + '], Mancala:' + ${mancala2}"/>
+
+        <p th:text="'Player 1 (p1): Cups=[' + ${cup10} + ', '+ ${cup11} + ', ' + ${cup12} + ', ' + ${cup13} + ', ' + ${cup14} + ', ' + ${cup15} + '], Mancala:' + ${mancala1}"/>
+    </div>
+
+    <div th:if="${player} == 'p2'">
+        <p th:text="'Player 1 (p1): Cups=[' + ${cup10} + ', '+ ${cup11} + ', ' + ${cup12} + ', ' + ${cup13} + ', ' + ${cup14} + ', ' + ${cup15} + '], Mancala:' + ${mancala1}"/>
+
+        <p th:text="'Player 2 (p2): Cups=[' + ${cup20} + ', '+ ${cup21} + ', ' + ${cup22} + ', ' + ${cup23} + ', ' + ${cup24} + ', ' + ${cup25} + '], Mancala:' + ${mancala2}"/>
+    </div>
+
+    <div th:if="${p1HasWin}">
+        <p th:text="'The Winner is: ' + p1"/>
+    </div>
+
+    <div th:if="${p2HasWin}">
+        <p th:text="'The Winner is: ' + p2"/>
+    </div>
+
+    <div th:unless="${anyoneHasWin}">
+        <p th:text="'Player Turn: ' + ${player}"/>
+
+        <form action="#" th:action="@{/play}" th:object="${payload}" method="post">
+            <input type="text" th:field="*{index}"/>
+            <input type="hidden" th:value="${player}" id="player" name="player"/>
+            <button type="submit" value="Submit">GO</button>
+        </form>
+    </div>
+</body>
+</html>

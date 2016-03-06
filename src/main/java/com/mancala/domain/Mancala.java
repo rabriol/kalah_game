@@ -13,4 +13,15 @@ public class Mancala {
     public void add(int stones) {
         this.stones += stones;
     }
+
+    public int size() {
+        return stones;
+    }
+
+    @Override
+    public String toString() {
+        return "Mancala{" +
+                "stones=" + stones +
+                '}';
+    }
 }
