@@ -59,7 +59,7 @@ public class GameBoard {
         }
 
         if (stones != ZERO) {
-            for (int i = opponent.getCups().size()-ONE; i >= ZERO && stones != ZERO; i--) {
+            for (int i = ZERO; i < opponent.getCups().size() && stones != ZERO; i++) {
                 stones--;
                 opponent.getCups().increment(i);
             }

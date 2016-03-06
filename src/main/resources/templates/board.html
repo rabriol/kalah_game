@@ -6,13 +6,13 @@
 </head>
 <body>
     <div th:if="${player} == 'p1'">
-        <p th:text="'Player 2 (p2): Cups=[' + ${cup20} + ', '+ ${cup21} + ', ' + ${cup22} + ', ' + ${cup23} + ', ' + ${cup24} + ', ' + ${cup25} + '], Mancala:' + ${mancala2}"/>
+        <p th:text="'Player 2 (p2): Cups=[' + ${cup25} + ', '+ ${cup24} + ', ' + ${cup23} + ', ' + ${cup22} + ', ' + ${cup21} + ', ' + ${cup20} + '], Mancala:' + ${mancala2}"/>
 
         <p th:text="'Player 1 (p1): Cups=[' + ${cup10} + ', '+ ${cup11} + ', ' + ${cup12} + ', ' + ${cup13} + ', ' + ${cup14} + ', ' + ${cup15} + '], Mancala:' + ${mancala1}"/>
     </div>
 
     <div th:if="${player} == 'p2'">
-        <p th:text="'Player 1 (p1): Cups=[' + ${cup10} + ', '+ ${cup11} + ', ' + ${cup12} + ', ' + ${cup13} + ', ' + ${cup14} + ', ' + ${cup15} + '], Mancala:' + ${mancala1}"/>
+        <p th:text="'Player 1 (p1): Cups=[' + ${cup15} + ', '+ ${cup14} + ', ' + ${cup13} + ', ' + ${cup12} + ', ' + ${cup11} + ', ' + ${cup10} + '], Mancala:' + ${mancala1}"/>
 
         <p th:text="'Player 2 (p2): Cups=[' + ${cup20} + ', '+ ${cup21} + ', ' + ${cup22} + ', ' + ${cup23} + ', ' + ${cup24} + ', ' + ${cup25} + '], Mancala:' + ${mancala2}"/>
     </div>
@@ -28,8 +28,16 @@
     <div th:unless="${anyoneHasWin}">
         <p th:text="'Player Turn: ' + ${player}"/>
 
+        <p th:text="'Choose the index'"/>
         <form action="#" th:action="@{/play}" th:object="${payload}" method="post">
-            <input type="text" th:field="*{index}"/>
+            <select id="index" name="index">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
             <input type="hidden" th:value="${player}" id="player" name="player"/>
             <button type="submit" value="Submit">GO</button>
         </form>
