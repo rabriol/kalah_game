@@ -11,20 +11,26 @@ public class WinnerChecker {
 
     private static final int ZERO = 0;
 
-    public void check(Player p1, Player p2) {
-        int stonesP1 = p1.getCups().getAllStones();
-        int stonesP2 = p2.getCups().getAllStones();
+    /**
+     * Verifies if anyone has won, this is reached when there is no more stones left on some the board's side.
+     * And it verifies who has won and summarize all stones that everybody has acquired during the game.
+     * @param actual
+     * @param opponent
+     */
+    public void check(Player actual, Player opponent) {
+        int stonesP1 = actual.getCups().getAllStones();
+        int stonesP2 = opponent.getCups().getAllStones();
 
         if (stonesP1 == ZERO || stonesP2 == ZERO) {
-            p1.getMancala().add(stonesP1);
-            p2.getMancala().add(stonesP2);
+            actual.getMancala().add(stonesP1);
+            opponent.getMancala().add(stonesP2);
 
-            if (p1.getMancala().size() > p2.getMancala().size()) {
-                p1.makeWinner();
-                p1.getCups().clearAllStones();
+            if (actual.getMancala().size() > opponent.getMancala().size()) {
+                actual.makeWinner();
+                actual.getCups().clearAllStones();
             } else {
-                p2.makeWinner();
-                p2.getCups().clearAllStones();
+                opponent.makeWinner();
+                opponent.getCups().clearAllStones();
             }
         }
     }
