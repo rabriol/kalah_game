@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Mancala Game</title>
+    <title>Kalah Game</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
@@ -15,6 +15,10 @@
         <p th:text="'Player 1 (p1): Pits=[' + ${pit15} + ', '+ ${pit14} + ', ' + ${pit13} + ', ' + ${pit12} + ', ' + ${pit11} + ', ' + ${pit10} + '], Kalah:' + ${kalah1}"/>
 
         <p th:text="'Player 2 (p2): Pits=[' + ${pit20} + ', '+ ${pit21} + ', ' + ${pit22} + ', ' + ${pit23} + ', ' + ${pit24} + ', ' + ${pit25} + '], Kalah:' + ${kalah2}"/>
+    </div>
+
+    <div th:if="${error} != null">
+        <p th:text="${error}"/>
     </div>
 
     <div th:if="${p1HasWin}">

@@ -1,6 +1,7 @@
 package com.mancala.logic;
 
 import com.mancala.domain.Player;
+import com.mancala.domain.StonesNotFoundException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -24,8 +25,13 @@ public class GameBoard {
      * @param actual indicates the current player which is playing
      * @param opponent indicates the opponent of actual player
      */
-    public void doMovement(int index, Player actual, Player opponent) {
+    public void doMovement(int index, Player actual, Player opponent) throws StonesNotFoundException {
         int stones = actual.getPits().getStones(index);
+
+        if (stones == 0) {
+            throw new StonesNotFoundException(String.format("no stones found based on the index %s", index));
+        }
+
         actual.getPits().clearStones(index);
 
         if (allotStones(index, actual, opponent, stones)) {

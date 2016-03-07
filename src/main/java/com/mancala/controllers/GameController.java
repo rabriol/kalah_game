@@ -53,13 +53,18 @@ public class GameController {
         Player p1 = (Player)session.getAttribute(PlayerId.PLAYER_ONE.getValue());
         Player p2 = (Player)session.getAttribute(PlayerId.PLAYER_TWO.getValue());
 
-        if (PlayerId.get(payload.getPlayer()).equals(PlayerId.PLAYER_ONE)) {
-            gameBoard.doMovement(payload.getIndex(), p1, p2);
-        } else  {
-            gameBoard.doMovement(payload.getIndex(), p2, p1);
-        }
+        try {
+            if (PlayerId.get(payload.getPlayer()).equals(PlayerId.PLAYER_ONE)) {
+                gameBoard.doMovement(payload.getIndex(), p1, p2);
+            } else {
+                gameBoard.doMovement(payload.getIndex(), p2, p1);
+            }
 
-        winnerChecker.check(p1, p2);
+            winnerChecker.check(p1, p2);
+        } catch (StonesNotFoundException e) {
+            model.addAttribute("error", String.format("there is no stones based on the index %s " +
+                    "please select another index", payload.getIndex()));
+        }
 
         model.addAttribute("p1HasWin", p1.hasWin());
         model.addAttribute("p2HasWin", p2.hasWin());
