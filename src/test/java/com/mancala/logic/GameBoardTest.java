@@ -98,7 +98,7 @@ public class GameBoardTest {
     }
 
     @Test
-    public void testWhenActualGetStonesFromOpponent2() throws Exception {
+    public void testWhenActualGetStonesFromOpponentAnotherScenario() throws Exception {
         Cups cupsActual = new Cups(6);
         int[] housesActual = new int[]{0, 7, 7, 7, 7, 8};
         cupsActual.setHouse(housesActual);
