@@ -3,11 +3,11 @@
 First of all to test this game, you should:
 
 - Make sure you have installed gradle
-- Clone the project 'git clone git@github.com:rabriol/mancala.git'
-- Do de command line 'cd mancala'
-- Do the gradle command line 'gradle clean build bootRun', wait to the server start
+- Fork the project https://github.com/rabriol/mancala and clone it to your computer
+- Execute de command line 'cd mancala'
+- Execute the gradle command line 'gradle clean build bootRun', wait to the server start
 
-After having done the instructions above, you can play the game, so:
+After having done this instructions above, you can play the game, so:
 
 - Open a web browser and type localhost:8080/
 - You should see a button called 'START', click on it.
