@@ -1,8 +1,4 @@
-# mancala
-
-------------
-Mancala Game
-------------
+# Mancala Game
 
 First of all to test this game, you should:
 
