@@ -6,15 +6,15 @@
 </head>
 <body>
     <div th:if="${player} == 'p1'">
-        <p th:text="'Player 2 (p2): Cups=[' + ${cup25} + ', '+ ${cup24} + ', ' + ${cup23} + ', ' + ${cup22} + ', ' + ${cup21} + ', ' + ${cup20} + '], Mancala:' + ${mancala2}"/>
+        <p th:text="'Player 2 (p2): Pits=[' + ${pit25} + ', '+ ${pit24} + ', ' + ${pit23} + ', ' + ${pit22} + ', ' + ${pit21} + ', ' + ${pit20} + '], Kalah:' + ${kalah2}"/>
 
-        <p th:text="'Player 1 (p1): Cups=[' + ${cup10} + ', '+ ${cup11} + ', ' + ${cup12} + ', ' + ${cup13} + ', ' + ${cup14} + ', ' + ${cup15} + '], Mancala:' + ${mancala1}"/>
+        <p th:text="'Player 1 (p1): Pits=[' + ${pit10} + ', '+ ${pit11} + ', ' + ${pit12} + ', ' + ${pit13} + ', ' + ${pit14} + ', ' + ${pit15} + '], Kalah:' + ${kalah1}"/>
     </div>
 
     <div th:if="${player} == 'p2'">
-        <p th:text="'Player 1 (p1): Cups=[' + ${cup15} + ', '+ ${cup14} + ', ' + ${cup13} + ', ' + ${cup12} + ', ' + ${cup11} + ', ' + ${cup10} + '], Mancala:' + ${mancala1}"/>
+        <p th:text="'Player 1 (p1): Pits=[' + ${pit15} + ', '+ ${pit14} + ', ' + ${pit13} + ', ' + ${pit12} + ', ' + ${pit11} + ', ' + ${pit10} + '], Kalah:' + ${kalah1}"/>
 
-        <p th:text="'Player 2 (p2): Cups=[' + ${cup20} + ', '+ ${cup21} + ', ' + ${cup22} + ', ' + ${cup23} + ', ' + ${cup24} + ', ' + ${cup25} + '], Mancala:' + ${mancala2}"/>
+        <p th:text="'Player 2 (p2): Pits=[' + ${pit20} + ', '+ ${pit21} + ', ' + ${pit22} + ', ' + ${pit23} + ', ' + ${pit24} + ', ' + ${pit25} + '], Kalah:' + ${kalah2}"/>
     </div>
 
     <div th:if="${p1HasWin}">

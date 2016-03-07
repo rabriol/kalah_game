@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 public class GameController {
-    public static final int STONES_PER_CUP = 6;
+    public static final int STONES_PER_PIT = 6;
 
     @Autowired
     private HttpSession session;
@@ -40,7 +40,7 @@ public class GameController {
 
         model.addAttribute("payload", new Payload());
 
-        addCupValuesToModel(model, p1, p2);
+        addPitValuesToModel(model, p1, p2);
 
         model.addAttribute("player", PlayerId.PLAYER_ONE.getValue());
 
@@ -65,34 +65,34 @@ public class GameController {
         model.addAttribute("p2HasWin", p2.hasWin());
         model.addAttribute("anyoneHasWin", p2.hasWin() || p1.hasWin());
 
-        addCupValuesToModel(model, p1, p2);
+        addPitValuesToModel(model, p1, p2);
 
         model.addAttribute("player", (p1.canPlay() ? p1.getPlayerId().getValue() : p2.getPlayerId().getValue()));
 
         return "board";
     }
 
-    private void addCupValuesToModel(Model model, Player p1, Player p2) {
-        model.addAttribute("mancala" + p1.getPlayerId().getNumber(), p1.getMancala().size());
+    private void addPitValuesToModel(Model model, Player p1, Player p2) {
+        model.addAttribute("kalah" + p1.getPlayerId().getNumber(), p1.getKalah().size());
 
-        model.addAttribute("cup" + p1.getPlayerId().getNumber() + "0", p1.getCups().getStones(0));
-        model.addAttribute("cup" + p1.getPlayerId().getNumber() + "1", p1.getCups().getStones(1));
-        model.addAttribute("cup" + p1.getPlayerId().getNumber() + "2", p1.getCups().getStones(2));
-        model.addAttribute("cup" + p1.getPlayerId().getNumber() + "3", p1.getCups().getStones(3));
-        model.addAttribute("cup" + p1.getPlayerId().getNumber() + "4", p1.getCups().getStones(4));
-        model.addAttribute("cup" + p1.getPlayerId().getNumber() + "5", p1.getCups().getStones(5));
+        model.addAttribute("pit" + p1.getPlayerId().getNumber() + "0", p1.getPits().getStones(0));
+        model.addAttribute("pit" + p1.getPlayerId().getNumber() + "1", p1.getPits().getStones(1));
+        model.addAttribute("pit" + p1.getPlayerId().getNumber() + "2", p1.getPits().getStones(2));
+        model.addAttribute("pit" + p1.getPlayerId().getNumber() + "3", p1.getPits().getStones(3));
+        model.addAttribute("pit" + p1.getPlayerId().getNumber() + "4", p1.getPits().getStones(4));
+        model.addAttribute("pit" + p1.getPlayerId().getNumber() + "5", p1.getPits().getStones(5));
 
-        model.addAttribute("mancala" + p2.getPlayerId().getNumber(), p2.getMancala().size());
+        model.addAttribute("kalah" + p2.getPlayerId().getNumber(), p2.getKalah().size());
 
-        model.addAttribute("cup" + p2.getPlayerId().getNumber() + "0", p2.getCups().getStones(0));
-        model.addAttribute("cup" + p2.getPlayerId().getNumber() + "1", p2.getCups().getStones(1));
-        model.addAttribute("cup" + p2.getPlayerId().getNumber() + "2", p2.getCups().getStones(2));
-        model.addAttribute("cup" + p2.getPlayerId().getNumber() + "3", p2.getCups().getStones(3));
-        model.addAttribute("cup" + p2.getPlayerId().getNumber() + "4", p2.getCups().getStones(4));
-        model.addAttribute("cup" + p2.getPlayerId().getNumber() + "5", p2.getCups().getStones(5));
+        model.addAttribute("pit" + p2.getPlayerId().getNumber() + "0", p2.getPits().getStones(0));
+        model.addAttribute("pit" + p2.getPlayerId().getNumber() + "1", p2.getPits().getStones(1));
+        model.addAttribute("pit" + p2.getPlayerId().getNumber() + "2", p2.getPits().getStones(2));
+        model.addAttribute("pit" + p2.getPlayerId().getNumber() + "3", p2.getPits().getStones(3));
+        model.addAttribute("pit" + p2.getPlayerId().getNumber() + "4", p2.getPits().getStones(4));
+        model.addAttribute("pit" + p2.getPlayerId().getNumber() + "5", p2.getPits().getStones(5));
     }
 
     private Player initPlayer(PlayerId playerId) {
-        return new Player(new Cups(STONES_PER_CUP), new Mancala(), playerId);
+        return new Player(new Pits(STONES_PER_PIT), new Kalah(), playerId);
     }
 }

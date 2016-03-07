@@ -18,19 +18,21 @@ public class WinnerChecker {
      * @param opponent
      */
     public void check(Player actual, Player opponent) {
-        int stonesP1 = actual.getCups().getAllStones();
-        int stonesP2 = opponent.getCups().getAllStones();
+        int stonesP1 = actual.getPits().getAllStones();
+        int stonesP2 = opponent.getPits().getAllStones();
 
         if (stonesP1 == ZERO || stonesP2 == ZERO) {
-            actual.getMancala().add(stonesP1);
-            opponent.getMancala().add(stonesP2);
+            actual.getKalah().add(stonesP1);
+            opponent.getKalah().add(stonesP2);
 
-            if (actual.getMancala().size() > opponent.getMancala().size()) {
+            if (actual.getKalah().size() > opponent.getKalah().size()) {
                 actual.makeWinner();
-                actual.getCups().clearAllStones();
+                actual.getPits().clearAllStones();
+                opponent.getPits().clearAllStones();
             } else {
                 opponent.makeWinner();
-                opponent.getCups().clearAllStones();
+                opponent.getPits().clearAllStones();
+                actual.getPits().clearAllStones();
             }
         }
     }

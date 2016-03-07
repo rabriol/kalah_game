@@ -4,25 +4,25 @@ package com.mancala.domain;
  * Created by peo_rboliveira on 04/03/16.
  */
 public class Player {
-    private final Cups cups;
-    private final Mancala mancala;
+    private final Pits pits;
+    private final Kalah kalah;
     private final PlayerId playerId;
 
     private Boolean turn = Boolean.FALSE;
     private Boolean winner = Boolean.FALSE;
 
-    public Player(Cups cups, Mancala mancala, PlayerId playerId) {
-        this.cups = cups;
-        this.mancala = mancala;
+    public Player(Pits pits, Kalah kalah, PlayerId playerId) {
+        this.pits = pits;
+        this.kalah = kalah;
         this.playerId = playerId;
     }
 
-    public Cups getCups() {
-        return cups;
+    public Pits getPits() {
+        return pits;
     }
 
-    public Mancala getMancala() {
-        return mancala;
+    public Kalah getKalah() {
+        return kalah;
     }
 
     public PlayerId getPlayerId() {
@@ -56,8 +56,8 @@ public class Player {
     @Override
     public String toString() {
         return "Player{" +
-                "cups=" + cups +
-                ", mancala=" + mancala +
+                "pits=" + pits +
+                ", kalah=" + kalah +
                 ", playerId=" + playerId +
                 ", turn=" + turn +
                 ", winner=" + winner +

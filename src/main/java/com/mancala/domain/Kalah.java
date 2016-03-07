@@ -3,7 +3,7 @@ package com.mancala.domain;
 /**
  * Created by brito on 3/5/16.
  */
-public class Mancala {
+public class Kalah {
     private int stones = 0;
 
     public void increment() {
@@ -20,7 +20,7 @@ public class Mancala {
 
     @Override
     public String toString() {
-        return "Mancala{" +
+        return "Kalah{" +
                 "stones=" + stones +
                 '}';
     }

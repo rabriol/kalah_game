@@ -1,7 +1,7 @@
 package com.mancala.logic;
 
-import com.mancala.domain.Cups;
-import com.mancala.domain.Mancala;
+import com.mancala.domain.Pits;
+import com.mancala.domain.Kalah;
 import com.mancala.domain.Player;
 import com.mancala.domain.PlayerId;
 import org.junit.Test;
@@ -15,42 +15,42 @@ public class GameBoardTest {
 
     @Test
     public void testFirstMovement() throws Exception {
-        Player actual = new Player(new Cups(6), new Mancala(), PlayerId.PLAYER_ONE);
-        Player opponent = new Player(new Cups(6), new Mancala(), PlayerId.PLAYER_TWO);
+        Player actual = new Player(new Pits(6), new Kalah(), PlayerId.PLAYER_ONE);
+        Player opponent = new Player(new Pits(6), new Kalah(), PlayerId.PLAYER_TWO);
 
         new GameBoard().doMovement(1, actual, opponent);
 
-        assertTrue(actual.getCups().isEmpty(1));
+        assertTrue(actual.getPits().isEmpty(1));
 
-        assertTrue(actual.getCups().getStones(2) == 7);
-        assertTrue(actual.getCups().getStones(4) == 7);
-        assertTrue(actual.getCups().getStones(5) == 7);
-        assertTrue(actual.getCups().getStones(5) == 7);
-        assertTrue(opponent.getCups().getStones(4) == 6);
+        assertTrue(actual.getPits().getStones(2) == 7);
+        assertTrue(actual.getPits().getStones(4) == 7);
+        assertTrue(actual.getPits().getStones(5) == 7);
+        assertTrue(actual.getPits().getStones(5) == 7);
+        assertTrue(opponent.getPits().getStones(4) == 6);
 
-        assertTrue(actual.getMancala().size() == 1);
+        assertTrue(actual.getKalah().size() == 1);
 
         assertFalse(actual.canPlay());
         assertTrue(opponent.canPlay());
     }
 
     @Test
-    public void testWhenIsPlayerTurnAgainByLastStoneInCup() throws Exception {
-        Player actual = new Player(new Cups(6), new Mancala(), PlayerId.PLAYER_ONE);
-        Player opponent = new Player(new Cups(6), new Mancala(), PlayerId.PLAYER_TWO);
+    public void testWhenIsPlayerTurnAgainByLastStoneInpit() throws Exception {
+        Player actual = new Player(new Pits(6), new Kalah(), PlayerId.PLAYER_ONE);
+        Player opponent = new Player(new Pits(6), new Kalah(), PlayerId.PLAYER_TWO);
 
         new GameBoard().doMovement(0, actual, opponent);
 
-        assertTrue(actual.getCups().isEmpty(0));
+        assertTrue(actual.getPits().isEmpty(0));
 
-        assertTrue(actual.getCups().getStones(1) == 7);
-        assertTrue(actual.getCups().getStones(2) == 7);
-        assertTrue(actual.getCups().getStones(4) == 7);
-        assertTrue(actual.getCups().getStones(5) == 7);
-        assertTrue(actual.getCups().getStones(5) == 7);
-        assertTrue(opponent.getCups().getStones(5) == 6);
+        assertTrue(actual.getPits().getStones(1) == 7);
+        assertTrue(actual.getPits().getStones(2) == 7);
+        assertTrue(actual.getPits().getStones(4) == 7);
+        assertTrue(actual.getPits().getStones(5) == 7);
+        assertTrue(actual.getPits().getStones(5) == 7);
+        assertTrue(opponent.getPits().getStones(5) == 6);
 
-        assertTrue(actual.getMancala().size() == 1);
+        assertTrue(actual.getKalah().size() == 1);
 
         assertTrue(actual.canPlay());
         assertFalse(opponent.canPlay());
@@ -58,40 +58,40 @@ public class GameBoardTest {
 
     @Test
     public void testWhenActualGetStonesFromOpponent() throws Exception {
-        Cups cupsActual = new Cups(6);
+        Pits pitsActual = new Pits(6);
         int[] housesActual = new int[]{1, 0, 8, 8, 8, 8};
-        cupsActual.setHouse(housesActual);
-        Mancala mancalaActual = new Mancala();
-        mancalaActual.add(2);
-        Player actual = new Player(cupsActual, mancalaActual, PlayerId.PLAYER_ONE);
+        pitsActual.setPit(housesActual);
+        Kalah kalahActual = new Kalah();
+        kalahActual.add(2);
+        Player actual = new Player(pitsActual, kalahActual, PlayerId.PLAYER_ONE);
 
-        Cups cupsOpponent = new Cups(6);
+        Pits pitsOpponent = new Pits(6);
         int[] housesOpponent = new int[]{1, 0, 9, 9, 8, 8};
-        cupsOpponent.setHouse(housesOpponent);
-        Mancala mancalaOpponent = new Mancala();
-        mancalaOpponent.add(2);
-        Player opponent = new Player(cupsOpponent, mancalaOpponent, PlayerId.PLAYER_TWO);
+        pitsOpponent.setPit(housesOpponent);
+        Kalah kalahOpponent = new Kalah();
+        kalahOpponent.add(2);
+        Player opponent = new Player(pitsOpponent, kalahOpponent, PlayerId.PLAYER_TWO);
 
         new GameBoard().doMovement(0, actual, opponent);
 
-        assertTrue(actual.getCups().isEmpty(0));
-        assertTrue(actual.getCups().isEmpty(1));
+        assertTrue(actual.getPits().isEmpty(0));
+        assertTrue(actual.getPits().isEmpty(1));
 
-        assertTrue(actual.getCups().getStones(2) == 8);
-        assertTrue(actual.getCups().getStones(3) == 8);
-        assertTrue(actual.getCups().getStones(4) == 8);
-        assertTrue(actual.getCups().getStones(5) == 8);
+        assertTrue(actual.getPits().getStones(2) == 8);
+        assertTrue(actual.getPits().getStones(3) == 8);
+        assertTrue(actual.getPits().getStones(4) == 8);
+        assertTrue(actual.getPits().getStones(5) == 8);
 
-        assertTrue(opponent.getCups().isEmpty(1));
-        assertTrue(opponent.getCups().isEmpty(4));
+        assertTrue(opponent.getPits().isEmpty(1));
+        assertTrue(opponent.getPits().isEmpty(4));
 
-        assertTrue(opponent.getCups().getStones(0) == 1);
-        assertTrue(opponent.getCups().getStones(2) == 9);
-        assertTrue(opponent.getCups().getStones(3) == 9);
-        assertTrue(opponent.getCups().getStones(5) == 8);
+        assertTrue(opponent.getPits().getStones(0) == 1);
+        assertTrue(opponent.getPits().getStones(2) == 9);
+        assertTrue(opponent.getPits().getStones(3) == 9);
+        assertTrue(opponent.getPits().getStones(5) == 8);
 
-        assertTrue(actual.getMancala().size() == 11);
-        assertTrue(opponent.getMancala().size() == 2);
+        assertTrue(actual.getKalah().size() == 11);
+        assertTrue(opponent.getKalah().size() == 2);
 
         assertFalse(actual.canPlay());
         assertTrue(opponent.canPlay());
@@ -99,40 +99,40 @@ public class GameBoardTest {
 
     @Test
     public void testWhenActualGetStonesFromOpponentAnotherScenario() throws Exception {
-        Cups cupsActual = new Cups(6);
+        Pits pitsActual = new Pits(6);
         int[] housesActual = new int[]{0, 7, 7, 7, 7, 8};
-        cupsActual.setHouse(housesActual);
-        Mancala mancalaActual = new Mancala();
-        mancalaActual.add(1);
-        Player actual = new Player(cupsActual, mancalaActual, PlayerId.PLAYER_ONE);
+        pitsActual.setPit(housesActual);
+        Kalah kalahActual = new Kalah();
+        kalahActual.add(1);
+        Player actual = new Player(pitsActual, kalahActual, PlayerId.PLAYER_ONE);
 
-        Cups cupsOpponent = new Cups(6);
+        Pits pitsOpponent = new Pits(6);
         int[] housesOpponent = new int[]{6, 0, 7, 7, 7, 7};
-        cupsOpponent.setHouse(housesOpponent);
-        Mancala mancalaOpponent = new Mancala();
-        mancalaOpponent.add(1);
-        Player opponent = new Player(cupsOpponent, mancalaOpponent, PlayerId.PLAYER_TWO);
+        pitsOpponent.setPit(housesOpponent);
+        Kalah kalahOpponent = new Kalah();
+        kalahOpponent.add(1);
+        Player opponent = new Player(pitsOpponent, kalahOpponent, PlayerId.PLAYER_TWO);
 
         new GameBoard().doMovement(5, actual, opponent);
 
-        assertTrue(actual.getCups().isEmpty(0));
-        assertTrue(actual.getCups().isEmpty(5));
+        assertTrue(actual.getPits().isEmpty(0));
+        assertTrue(actual.getPits().isEmpty(5));
 
-        assertTrue(actual.getCups().getStones(1) == 7);
-        assertTrue(actual.getCups().getStones(2) == 7);
-        assertTrue(actual.getCups().getStones(3) == 7);
-        assertTrue(actual.getCups().getStones(4) == 7);
+        assertTrue(actual.getPits().getStones(1) == 7);
+        assertTrue(actual.getPits().getStones(2) == 7);
+        assertTrue(actual.getPits().getStones(3) == 7);
+        assertTrue(actual.getPits().getStones(4) == 7);
 
-        assertTrue(opponent.getCups().isEmpty(5));
+        assertTrue(opponent.getPits().isEmpty(5));
 
-        assertTrue(opponent.getCups().getStones(0) == 7);
-        assertTrue(opponent.getCups().getStones(1) == 1);
-        assertTrue(opponent.getCups().getStones(2) == 8);
-        assertTrue(opponent.getCups().getStones(3) == 8);
-        assertTrue(opponent.getCups().getStones(4) == 8);
+        assertTrue(opponent.getPits().getStones(0) == 7);
+        assertTrue(opponent.getPits().getStones(1) == 1);
+        assertTrue(opponent.getPits().getStones(2) == 8);
+        assertTrue(opponent.getPits().getStones(3) == 8);
+        assertTrue(opponent.getPits().getStones(4) == 8);
 
-        assertTrue(actual.getMancala().size() == 11);
-        assertTrue(opponent.getMancala().size() == 1);
+        assertTrue(actual.getKalah().size() == 11);
+        assertTrue(opponent.getKalah().size() == 1);
 
         assertFalse(actual.canPlay());
         assertTrue(opponent.canPlay());

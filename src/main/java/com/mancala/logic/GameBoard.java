@@ -16,17 +16,17 @@ public class GameBoard {
     /**
      * Do all movements rules, including:
      * <ul>
-     *  <li>distributing stones along the board and mancala's player</li>
+     *  <li>distributing stones along the board and kalah's player</li>
      *  <li>controlling player's turn</li>
      *  <li>checking if actual player should get stones from opponent</li>
      * <ul/>
-     * @param index indicates which cups to read to get the stones
+     * @param index indicates which pits to read to get the stones
      * @param actual indicates the current player which is playing
      * @param opponent indicates the opponent of actual player
      */
     public void doMovement(int index, Player actual, Player opponent) {
-        int stones = actual.getCups().getStones(index);
-        actual.getCups().clearStones(index);
+        int stones = actual.getPits().getStones(index);
+        actual.getPits().clearStones(index);
 
         if (allotStones(index, actual, opponent, stones)) {
             return;
@@ -37,17 +37,17 @@ public class GameBoard {
     }
 
     private boolean allotStones(int index, Player actual, Player opponent, int stones) {
-        //start distributing stones on actual player cups
-        while (index < actual.getCups().size()-ONE && stones != ZERO) {
+        //start distributing stones on actual player pits
+        while (index < actual.getPits().size()-ONE && stones != ZERO) {
             stones--;
-            actual.getCups().increment(++index);
+            actual.getPits().increment(++index);
 
             if (checkIfActualGetFromOpponent(index, actual, stones)) {
-                actual.getMancala().add(actual.getCups().getStones(index));
-                actual.getMancala().add(opponent.getCups().getStones((opponent.getCups().size() - ONE) - index));
+                actual.getKalah().add(actual.getPits().getStones(index));
+                actual.getKalah().add(opponent.getPits().getStones((opponent.getPits().size() - ONE) - index));
 
-                actual.getCups().clearStones(index);
-                opponent.getCups().clearStones((opponent.getCups().size() - ONE) - index);
+                actual.getPits().clearStones(index);
+                opponent.getPits().clearStones((opponent.getPits().size() - ONE) - index);
 
                 actual.makeWait();
                 opponent.makePlay();
@@ -58,7 +58,7 @@ public class GameBoard {
 
         //if there is stones yet it increments the actual player mancala
         if (stones != ZERO) {
-            actual.getMancala().increment();
+            actual.getKalah().increment();
             stones--;
 
             if (stones == ZERO) {
@@ -71,13 +71,13 @@ public class GameBoard {
 
         //if there is stones yet it distributes stones on opponent board
         if (stones != ZERO) {
-            for (int i = ZERO; i < opponent.getCups().size() && stones != ZERO; i++) {
+            for (int i = ZERO; i < opponent.getPits().size() && stones != ZERO; i++) {
                 stones--;
-                opponent.getCups().increment(i);
+                opponent.getPits().increment(i);
             }
         }
 
-        //when there is more stones than cups and mancalas, this part is executed to distribute the rest of stones
+        //when there is more stones than pits and mancalas, this part is executed to distribute the rest of stones
         // again to the actual player
         if (stones != ZERO) {
             return allotStones(REINITIALIZE_INDEX, actual, opponent, stones);
@@ -87,6 +87,6 @@ public class GameBoard {
     }
 
     private boolean checkIfActualGetFromOpponent(int index, Player actual, int stones) {
-        return stones == ZERO && actual.getCups().getStones(index) == ONE;
+        return stones == ZERO && actual.getPits().getStones(index) == ONE;
     }
 }
