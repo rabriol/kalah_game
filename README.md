@@ -26,3 +26,5 @@ Player 1: [5, 4, 3, 2, 1, 0] - board index
 Player 2: [0, 1, 2, 3, 4, 5] - board index
 
 That means Player 2 is seing his board against Player 1.
+
+To know more about the game, please visit https://en.wikipedia.org/wiki/Kalah
